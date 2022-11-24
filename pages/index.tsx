@@ -2,34 +2,10 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
+import { example01, example02, example03 } from './examples';
 
 export default function Home() {
   const [exampleDataList, setExampleDataList] = useState<boolean[]>([]);
-  const example01 = () => {
-    const toMatch = [
-      /Android/i,
-      /webOS/i,
-      /iPhone/i,
-      /iPad/i,
-      /iPod/i,
-      /BlackBerry/i,
-      /Windows Phone/i,
-    ];
-    const isMobile = toMatch.some((toMatchItem) => {
-      return window.navigator.userAgent.match(toMatchItem);
-    });
-    return isMobile;
-  };
-
-  const example02 = () => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); // 안드로이드 아이폰을 검사해 체크
-    return isMobile;
-  };
-
-  const example03 = () => {
-    const isMobile = /Mobi/i.test(window.navigator.userAgent); // "Mobi" 가 User agent에 포함되어 있으면 모바일
-    return isMobile;
-  };
 
   useEffect(() => {
     const ex1 = example01();
