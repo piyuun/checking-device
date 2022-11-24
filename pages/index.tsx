@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css';
 import { example01, example02, example03 } from '../functions/examples';
 
 export default function Home() {
-  const [exampleDataList, setExampleDataList] = useState<boolean[]>([]);
+  const [exampleDataList, setExampleDataList] = useState<string[]>([]);
 
   useEffect(() => {
     const ex1 = example01();
@@ -37,9 +37,7 @@ export default function Home() {
                     </td>
                     <td>You are using: </td>
                     <td>
-                      <code className={styles.code}>
-                        {item ? 'mobile' : 'pc'}
-                      </code>
+                      <code className={styles.code}>{item}</code>
                     </td>
                   </tr>
                 );
