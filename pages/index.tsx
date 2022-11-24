@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
-  const [exampleDataList, setExampleDataList] = useState<string[]>([]);
+  const [exampleDataList, setExampleDataList] = useState<boolean[]>([]);
   const example01 = () => {
     const toMatch = [
       /Android/i,
@@ -15,23 +15,28 @@ export default function Home() {
       /BlackBerry/i,
       /Windows Phone/i,
     ];
-    const isMob = toMatch.some((toMatchItem) => {
+    const isMobile = toMatch.some((toMatchItem) => {
       return window.navigator.userAgent.match(toMatchItem);
     });
+    return isMobile;
+  };
 
-    if (isMob) {
-      const list = [...exampleDataList];
-      list[0] = 'mobile';
-      setExampleDataList(list);
-    } else {
-      const list = [...exampleDataList];
-      list[0] = 'pc';
-      setExampleDataList(list);
-    }
+  const example02 = () => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); // 안드로이드 아이폰을 검사해 체크
+    return isMobile;
+  };
+
+  const example03 = () => {
+    const isMobile = /Mobi/i.test(window.navigator.userAgent); // "Mobi" 가 User agent에 포함되어 있으면 모바일
+    return isMobile;
   };
 
   useEffect(() => {
-    example01();
+    const ex1 = example01();
+    const ex2 = example02();
+    const ex3 = example03();
+    const list = [ex1, ex2, ex3];
+    setExampleDataList(list);
   }, []);
 
   return (
@@ -56,7 +61,9 @@ export default function Home() {
                     </td>
                     <td>You are using: </td>
                     <td>
-                      <code className={styles.code}>{item}</code>
+                      <code className={styles.code}>
+                        {item ? 'mobile' : 'pc'}
+                      </code>
                     </td>
                   </tr>
                 );
