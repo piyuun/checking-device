@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
-  const [device, setDevice] = useState('');
+  const [exampleDataList, setExampleDataList] = useState<string[]>([]);
   useEffect(() => {
+    // EXAMPLE 01
     const toMatch = [
       /Android/i,
       /webOS/i,
@@ -20,10 +21,11 @@ export default function Home() {
     });
 
     if (isMob) {
-      setDevice('mobile');
+      setExampleDataList((cur) => [...cur, 'mobile']);
     } else {
-      setDevice('pc');
+      setExampleDataList((cur) => [...cur, 'pc']);
     }
+    console.log('this is start');
   }, []);
 
   return (
@@ -39,10 +41,25 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <p className={styles.description}>
-          You are using:
-          <code className={styles.code}>{device}</code>
-        </p>
+        <div className={styles.description}>
+          <table className={styles.table}>
+            <tbody>
+              {exampleDataList.map((item, id) => {
+                return (
+                  <tr key={id}>
+                    <td>
+                      <strong>EXAMPLE{id + 1}</strong>
+                    </td>
+                    <td>You are using: </td>
+                    <td>
+                      <code className={styles.code}>{item}</code>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </main>
 
       <footer className={styles.footer}>
