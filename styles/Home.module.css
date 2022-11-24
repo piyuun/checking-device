@@ -53,11 +53,11 @@
 .description {
   margin: 4rem 0;
   line-height: 1.5;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .table tr td:first-child {
-  width: 160px;
+  width: 60px;
 }
 
 .code {

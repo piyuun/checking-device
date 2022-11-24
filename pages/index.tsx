@@ -52,7 +52,7 @@ export default function Home() {
                 return (
                   <tr key={id}>
                     <td>
-                      <strong>EXAMPLE{id + 1}</strong>
+                      <strong>EX{id + 1}</strong>
                     </td>
                     <td>You are using: </td>
                     <td>
