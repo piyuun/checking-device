@@ -26,3 +26,9 @@ export const example03 = () => {
   const result = isMobile ? 'mobile' : 'pc';
   return result;
 };
+
+export const example04 = () => {
+  const MobileDetect = require('mobile-detect');
+  const md = new MobileDetect(navigator.userAgent);
+  return md.mobile();
+};

@@ -2,7 +2,12 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
-import { example01, example02, example03 } from '../functions/examples';
+import {
+  example01,
+  example02,
+  example03,
+  example04,
+} from '../functions/examples';
 
 export default function Home() {
   const [exampleDataList, setExampleDataList] = useState<string[]>([]);
@@ -11,7 +16,8 @@ export default function Home() {
     const ex1 = example01();
     const ex2 = example02();
     const ex3 = example03();
-    const list = [ex1, ex2, ex3];
+    const ex4 = example04();
+    const list = [ex1, ex2, ex3, ex4];
     setExampleDataList(list);
   }, []);
 
