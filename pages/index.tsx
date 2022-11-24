@@ -4,7 +4,21 @@ import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
-  const [device, setDevice] = useState('');
+  const detectMob = () => {
+    const toMatch = [
+      /Android/i,
+      /webOS/i,
+      /iPhone/i,
+      /iPad/i,
+      /iPod/i,
+      /BlackBerry/i,
+      /Windows Phone/i,
+    ];
+    return toMatch.some((toMatchItem) => {
+      return navigator.userAgent.match(toMatchItem);
+    });
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -20,7 +34,7 @@ export default function Home() {
 
         <p className={styles.description}>
           You are using:
-          <code className={styles.code}>{device}</code>
+          <code className={styles.code}>{detectMob() ? 'mobile' : 'pc'}</code>
         </p>
       </main>
 
