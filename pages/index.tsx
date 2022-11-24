@@ -1,10 +1,11 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
-  const detectMob = () => {
+  const [device, setDevice] = useState('');
+  useEffect(() => {
     const toMatch = [
       /Android/i,
       /webOS/i,
@@ -14,10 +15,16 @@ export default function Home() {
       /BlackBerry/i,
       /Windows Phone/i,
     ];
-    return toMatch.some((toMatchItem) => {
-      return navigator.userAgent.match(toMatchItem);
+    const isMob = toMatch.some((toMatchItem) => {
+      return window.navigator.userAgent.match(toMatchItem);
     });
-  };
+
+    if (isMob) {
+      setDevice('mobile');
+    } else {
+      setDevice('pc');
+    }
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -34,7 +41,7 @@ export default function Home() {
 
         <p className={styles.description}>
           You are using:
-          <code className={styles.code}>{detectMob() ? 'mobile' : 'pc'}</code>
+          <code className={styles.code}>{device}</code>
         </p>
       </main>
 
