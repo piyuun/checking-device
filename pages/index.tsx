@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
-import { example01, example02, example03 } from './examples';
+import { example01, example02, example03 } from '../functions/examples';
 
 export default function Home() {
   const [exampleDataList, setExampleDataList] = useState<boolean[]>([]);
